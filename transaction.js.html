@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Source: transaction.js</title>
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <script src="scripts/jquery.min.js"> </script>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/font-awesome-4.1.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<div class="navigation">
+    
+    <h3 class="applicationName"><a href="index.html">Coinjelly</a></h3>
+    
+    <!--
+    <div class="subtitle">Namespace</div>
+      
+        <div class="moduleitem">
+            <a href="CoinJelly.html">CoinJelly</a>
+        </div>
+    
+    -->
+    
+    <div class="subtitle">Modules</div>
+     
+        <div class="moduleitem">
+            <a href="CoinJelly.module_Account.html">CoinJelly.module:Account</a>
+        </div>
+     
+        <div class="moduleitem">
+            <a href="CoinJelly.module_Client.html">CoinJelly.module:Client</a>
+        </div>
+     
+        <div class="moduleitem">
+            <a href="CoinJelly.module_Services.html">CoinJelly.module:Services</a>
+        </div>
+     
+        <div class="moduleitem">
+            <a href="CoinJelly.module_Transaction.html">CoinJelly.module:Transaction</a>
+        </div>
+    
+
+    <div class="subtitle">Classes</div>
+      
+        
+            <div class="classitemheader">Account Module</div>
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Account-AccountMangerClass.html">AccountMangerClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Account-AccountModelClass.html">AccountModelClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Account-CoinBaseAccountClass.html">CoinBaseAccountClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Account-ControllerClass.html">ControllerClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Account-ExternalAccountClass.html">ExternalAccountClass</a>
+        </div>
+      
+        
+            <div class="classitemheader">Client Module</div>
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Client-AngularInitClass.html">AngularInitClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Client-ControllerClass.html">ControllerClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Client-OrderItemClass.html">OrderItemClass</a>
+        </div>
+      
+        
+            <div class="classitemheader">Services Module</div>
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Services-RestServiceClass.html">RestServiceClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Services-ServerRequestClass.html">ServerRequestClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Services-ServerResponseClass.html">ServerResponseClass</a>
+        </div>
+      
+        
+            <div class="classitemheader">Transaction Module</div>
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Transaction-AgentClass.html">AgentClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Transaction-BuyOrderClass.html">BuyOrderClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Transaction-ControllerClass.html">ControllerClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Transaction-OrderClass.html">OrderClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Transaction-SellOrderClass.html">SellOrderClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Transaction-TransactionClass.html">TransactionClass</a>
+        </div>
+    
+
+</div>
+    <div class="main">
+        <h1 class="page-title" data-filename="transaction.js.html">Source: transaction.js</h1>
+        
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>
+/**
+ * This module encapsulates the logic for managing manual transactions the user would like to commit. The user is able to add buy or sell transactions to a temporary (session) queue, remove transactions from the queue and commit the transactions.
+ * @module CoinJelly.Transaction
+ */
+
+CoinJelly.Transaction = (function(){
+
+/**
+ * Creates a new transaction object
+ * @class 
+ * @classdesc Provides concrete methods for buy and sell transaction.
+ */
+
+TransactionClass = function() 
+{
+	/**
+	 * Rest service object
+	 * @private
+	 * @type {restserviceObject}
+	 */
+	this.restService = new RestService();
+
+	/**
+	 * Issues a post request to the server to initiate a buy transaction
+	 * @param  {number} btcAmount the amount of bitcoin for the transaction
+	 * @param  {number} usdAmount the amount of usd for the transaction
+	 * @return {serverResponseObject} 0 server reponse object from the rest api call
+	 */
+	this.buy = function( btcAmount, usdAmount ) {};
+
+	/**
+	 * Issues a post request to the server to initiate a sell transaction
+	 * @param  {number} btcAmount the amount of bitcoin for the transaction
+	 * @param  {number} usdAmount the amount of usd for the transaction
+	 * @returns {serverResponseObject} 0 server reponse from the rest api call
+	 */
+	this.sell = function( btcAmount, usdAmount ) {};
+
+}
+
+/**
+ * Creates a new order object
+ * @class
+ * @classdesc The base class for an order.
+ * @param {callbackFunction} execute callback function from the transaction class
+ * @param {number} amount btcAmount the amount of bitcoin for the transaction
+ * @param {number} value  usdAmount the amount of usd for the transaction
+ * @param {string} type the type of transaction
+ * @returns {orderObject} 0 order object with the execute() callback method set to transaction object
+ *
+ */
+OrderClass = function( execute, amount, price, type ) 
+{
+	/**
+	 * Contracted execute method
+	 * @return {responseObject} 0 reponse object from the rest api call of the callback function in the Transaction object
+	 */
+	this.execute = function() { return execute; }
+
+	/**
+	 * Amount of btc
+	 * @type {number}
+	 */
+    this.amount = amount;
+
+    /**
+     * Price in USD
+     * @type {number}
+     */
+    this.price = price; 
+
+    /**
+     * The type of transaction
+     * @type {string}
+     */
+    this.type = type;
+
+}
+
+/**
+ * Creates a new order object
+ * @class 
+ * @classdesc Concrete buy order class.
+ * @param {number} amount btcAmount the amount of bitcoin for the transaction
+ * @param {number} value  usdAmount the amount of usd for the transaction
+ * @returns {orderObject} 0 order object with the execute() callback method set to the buy() method of the Transaction object
+ */
+BuyOrderClass = function(amount, value) {
+
+	/**
+	 * Transaction object
+	 * @type {transactionObject}
+	 */
+	this.trans = new Transaction();
+
+	/**
+	 * Order object
+	 * @type {orderObject}
+	 */
+	this.order = new Order( trans.buy, amount, value, 'buy' );
+
+	return this.order;
+}
+/**
+ * Creates a new order object
+ * @class 
+ * @classdesc Concrete sell order class.
+ * @param {number} amount btcAmount the amount of bitcoin for the transaction
+ * @param {number} value  usdAmount the amount of usd for the transaction
+ * @returns {orderObject} 0 order object with the execute() callback method set to the sell() method of the Transaction object
+ */
+SellOrderClass = function(amount, value) {
+
+	/**
+	 * Transaction object
+	 * @type {transactionObject}
+	 */
+	this.trans = new Transaction();
+
+	/**
+	 * Order object
+	 * @type {orderObject}
+	 */
+	this.order = new Order( trans.sell, amount, value, 'sell' );
+
+	return this.order;
+}
+
+/**
+ * Creates a new agent object
+ * @class
+ * @classdesc Invokes the transaction buy or sell method and maintains the transaction queue.
+ */
+AgentClass = function() {
+
+	/**
+	 * Queue that holds the transactions yet to be committed
+	 * @type {Array}
+	 */
+	this.orderQueue = [];
+
+	/**
+	 * Adds a order to the queue
+	 * @param {Order} order Order object to be added to the queue
+	 * @return {void}
+	 */
+	this.addToQueue = function( order ) {};
+
+	/**
+	 * Removes a order to the queue
+	 * @param {Order} order Order object to be removed from the queue
+	 * @return {void}
+	 */
+	this.removeFromQueue = function( order ) {};
+
+	/**
+	 * Commits the transaction commands in the queue
+	 * @return {void}
+	 */
+	this.commit = function() {};
+
+	/**
+	 * Gets a order in the queue
+	 * @param {number} id The index of the order in the queue
+	 * @return {void}
+	 */
+	this.getCommandFromQueue = function ( id ) {};
+
+    /**
+     * Get all the commands in the queue
+     * @return {array} 
+     */
+    this.getAllCommandsInQueue = function() {}
+
+    return this;
+}
+
+/**
+ * Creates a new controller object
+ * @class
+ * @classdesc An api consumable by the client application used to conduct manual transactions.
+ */
+ControllerClass = function() {
+	
+	/**
+	 * Agent object
+	 * @private
+	 * @type {agentObject}
+	 */
+	this.agent = new Agent();
+
+	/**
+	 * BTC amount
+	 * @type {Number}
+	 */
+	this.amount = 0;
+
+	/**
+	 * USD amount
+	 * @type {Number}
+	 */
+	this.price = 0;
+
+	/**
+	 * Adds a buy order to the queue. 
+	 * Amount and price attributes must be set
+	 * @return {void}
+	 */
+	this.buy = function() {};
+
+	/**
+	 * Adds a sell order to the queue
+	 * Amount and price attributes must be set
+	 * @return {void}
+	 */
+	this.sell = function() {};
+
+	/**
+	 * Removes an order to the queue
+	 * @param {number} id order identifier
+	 * @return {void}
+	 */
+	this.cancel = function( id ) {};
+
+	/**
+	 * Commits the commands in the queue
+	 * @param  {order} order object
+	 * @return {void}         
+	 */
+	this.commit = function() {};
+
+	/**
+	 * Gets the current queue
+	 * @return {array}         
+	 */
+	this.getQueue = function() {};
+
+	return this;
+
+}
+
+}());</code></pre>
+        </article>
+    </section>
+
+
+
+
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>

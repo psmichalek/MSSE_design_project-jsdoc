@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Source: account.js</title>
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <script src="scripts/jquery.min.js"> </script>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/font-awesome-4.1.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<div class="navigation">
+    
+    <h3 class="applicationName"><a href="index.html">Coinjelly</a></h3>
+    
+    <!--
+    <div class="subtitle">Namespace</div>
+      
+        <div class="moduleitem">
+            <a href="CoinJelly.html">CoinJelly</a>
+        </div>
+    
+    -->
+    
+    <div class="subtitle">Modules</div>
+     
+        <div class="moduleitem">
+            <a href="CoinJelly.module_Account.html">CoinJelly.module:Account</a>
+        </div>
+     
+        <div class="moduleitem">
+            <a href="CoinJelly.module_Client.html">CoinJelly.module:Client</a>
+        </div>
+     
+        <div class="moduleitem">
+            <a href="CoinJelly.module_Services.html">CoinJelly.module:Services</a>
+        </div>
+     
+        <div class="moduleitem">
+            <a href="CoinJelly.module_Transaction.html">CoinJelly.module:Transaction</a>
+        </div>
+    
+
+    <div class="subtitle">Classes</div>
+      
+        
+            <div class="classitemheader">Account Module</div>
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Account-AccountMangerClass.html">AccountMangerClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Account-AccountModelClass.html">AccountModelClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Account-CoinBaseAccountClass.html">CoinBaseAccountClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Account-ControllerClass.html">ControllerClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Account-ExternalAccountClass.html">ExternalAccountClass</a>
+        </div>
+      
+        
+            <div class="classitemheader">Client Module</div>
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Client-AngularInitClass.html">AngularInitClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Client-ControllerClass.html">ControllerClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Client-OrderItemClass.html">OrderItemClass</a>
+        </div>
+      
+        
+            <div class="classitemheader">Services Module</div>
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Services-RestServiceClass.html">RestServiceClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Services-ServerRequestClass.html">ServerRequestClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Services-ServerResponseClass.html">ServerResponseClass</a>
+        </div>
+      
+        
+            <div class="classitemheader">Transaction Module</div>
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Transaction-AgentClass.html">AgentClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Transaction-BuyOrderClass.html">BuyOrderClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Transaction-ControllerClass.html">ControllerClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Transaction-OrderClass.html">OrderClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Transaction-SellOrderClass.html">SellOrderClass</a>
+        </div>
+      
+        
+
+        <div class="classitem">
+            <a href="CoinJelly.module_Transaction-TransactionClass.html">TransactionClass</a>
+        </div>
+    
+
+</div>
+    <div class="main">
+        <h1 class="page-title" data-filename="account.js.html">Source: account.js</h1>
+        
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * Global namespace for the Coinjelly application
+ * @namespace CoinJelly
+ */
+
+var CoinJelly = CoinJelly || this;
+
+/**
+ * This module encapsulates the logic for managing the user’s CoinJelly account information. The user is able to view and change their account information and save changes to the system.
+ * @module CoinJelly.Account
+ */
+
+CoinJelly.Account = (function(){
+
+/**
+ * @param {string} provider A value indicating what external account object should be created.
+ * @class
+ * @classdesc The class provides a factory method for creating an external account object.
+ */
+ExternalAccountClass = function( provider )
+{
+
+	/**
+	 * Indicates what external account object to return from the create method
+	 * @type {string}
+	 */
+	this.provider = provider;
+
+	/**
+	 * Creates an object for the provider specified
+	 * @private
+	 * @return {externalAccountObject} 0 the appropriate external account object according to the provider
+	 */
+	this.create = function() {}
+
+	return this.create;
+
+}
+
+/**
+ * Creates a new Coinbase account object
+ * @class 
+ * @classdesc Concrete external account class that is invoked in the ExternalAccount Class.
+ */
+CoinBaseAccountClass = function() 
+{
+	/**
+	 * The type of authorization (api key or oAuth) the user is using with their Coinbase account
+	 * @type {String}
+	 */
+	this.authType = '';
+
+	/**
+	 * Api key
+	 * @type {String}
+	 */
+	this.apikey = '';
+
+	/**
+	 * Api secret key
+	 * @type {String}
+	 */
+	this.apisecret = '';
+
+	/**
+	 * oAuth information
+	 * @type {String}
+	 */
+	this.oauth = '';
+
+	/**
+	 * To determine if user is using two factor authenticaion
+	 * @type {Boolean}
+	 */
+	this.isUsingTwoFactor = false;
+
+	return this;
+}
+
+/**
+ * Creates a new account model object
+ * @class
+ * @classdesc Model for the user's Coinjelly account.
+ */
+AccountModelClass = function() 
+{
+
+	/**
+	 * User's username
+	 * @type {string}
+	 */
+	this.username = '';
+
+	/**
+	 * User's password
+	 * @type {string}
+	 */
+	this.password = '';
+
+	/**
+	 * User's email address
+	 * @type {string}
+	 */
+	this.email = '';
+
+	/**
+	 * User's phone number
+	 * @type {string}
+	 */
+	this.phone = '';
+
+	/**
+	 * A collection of objects representing a user's API credentials for each external API account they have stored
+	 * @type {array}
+	 */
+	this.apicredentials = [];
+
+	return this;
+}
+
+/**
+ * Creates a new accountMananger object
+ * @class
+ * @classdesc Implementation class for managing the user's Coinjelly account information.
+ */
+AccountMangerClass = function() {
+	
+	/**
+	 * Rest service object
+	 * @private
+	 * @type {restserviceObject}
+	 */
+	this.restService = new RestService();
+
+	/**
+	 * Send a save request to the server
+	 * @param {accountModelObject} account Account model object
+	 * @return {responseObject} 0 reponse object from the rest api call
+	 */
+	this.saveModelToServer = function( account ) {};
+
+	/**
+	 * Refresh the account with data from the server
+	 * @param {accountModelObject} account Account model object
+	 * @return {accountModelObject} 0 refreshed account model object
+	 */
+	this.refreshModelFromServer = function( account ) {};
+
+	/**
+	 * Validate the data in the model
+	 * @param {accountModelObject} account Account model object
+	 * @return {accountModelObject} 0 validated account model object
+	 */
+	this.validateModel = function( account ) {}
+
+	/**
+	 * Gets the user's api credentials and sets them on the model
+	 * @param {accountModelObject} account Account model object
+	 * @return {accountModelObject} 0 account model with api credential collection set
+	 */
+	this.setApiCredentials = function( account ) {}
+
+	/**
+	 * Sends a request to the server to retrieve the external acount proviers for the user
+	 * @param  {accountModelObject} account Account model object
+	 * @return {array} 0 array of external account providers
+	 */
+	this.getExternalApiAccounts = function ( account ) {}
+
+	return this;
+
+}
+/**
+ * Creates a new controller object
+ * @class
+ * @classdesc An api consumable by the client application used to manage the user's Coinjelly account information.
+ */
+ControllerClass = function() {
+	
+	/**
+	 * AccountManager object
+	 * @private
+	 * @type {acountManagerObject}
+	 */
+	this.accountManager = new AccountManagerClass();
+
+	/**
+	 * AccountModel object
+	 * @private
+	 * @type {acountModelObject}
+	 */
+	this.currentAccount = new AccountModelClass();
+
+	/**
+	 * Retrieves the current stored on the server
+	 * @return {acountModelObject}
+	 */
+	this.refresh = function() {};
+
+	/**
+	 * Saves current information
+	 * @return {void}
+	 */
+	this.save = function() {};
+
+	return this;
+
+}
+
+}());</code></pre>
+        </article>
+    </section>
+
+
+
+
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>
